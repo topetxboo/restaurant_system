@@ -37,17 +37,6 @@ var app = {
       }
     ],
 
-  removeProduct: function () {
-    "use strict";
-
-    var item = $(this).closest(".shopping-cart--list-item");
-
-    item.addClass("closing");
-    window.setTimeout( function () {
-      item.remove();
-      app.updateTotals();
-    }, 500); // Timeout for css animation
-  },
 
   addProduct: function () {
     "use strict";
@@ -94,11 +83,11 @@ var app = {
       subtotal += parseFloat( $(products[i]).find(".product-total-price").html().strip$() );
     }
 
-    shipping = (subtotal > 0 && subtotal < (100 / 1.06)) ? app.shipping : 0;
+    shipping = (subtotal > 0 && subtotal < (100 / 1.06));
 
     $("#subtotalCtr").find(".cart-totals-value").html( subtotal.to_$() );
     $("#taxesCtr").find(".cart-totals-value").html( (subtotal * 0.06).to_$() );
-    $("#totalCtr").find(".cart-totals-value").html( (subtotal * 1.06 + shipping).to_$() );
+    $("#totalCtr").find(".cart-totals-value").html( (subtotal * 1.06).to_$() );
     $("#shippingCtr").find(".cart-totals-value").html( shipping.to_$() );
   },
 
